@@ -5,7 +5,7 @@ companies_button = (By.ID, "nav-companies")
 tags_button = (By.ID, "nav-tags")
 users_button = (By.ID, "nav-users")
 home_container_button = (By.XPATH, "//a[contains(@class, 's-topbar--menu-btn')]")
-home_cont_elements_title = (By.XPATH, "//h1[contains(@class, 'fs-headline1')]")
+home_container_elements_title = (By.XPATH, "//h1[contains(@class, 'fs-headline1')]")
 
 
 def start(get_driver):
@@ -26,21 +26,21 @@ def open_page_companies(get_driver):
     start(get_driver)
     click(get_driver, home_container_button)
     click(get_driver, companies_button)
-    is_page_opens = get_driver.find_element(*companies_title).text
-    assert is_page_opens == "Companies"  # opened
+    has_the_page_opened = get_driver.find_element(*home_container_elements_title).text
+    assert has_the_page_opened == "Companies"  # opened
 
 
 def open_page_tags(get_driver):
     start(get_driver)
     click(get_driver, home_container_button)
     click(get_driver, tags_button)
-    is_page_opens = get_driver.find_element(*companies_title).text
-    assert is_page_opens == "Tags"  # opened
+    has_the_page_opened = get_driver.find_element(*home_container_elements_title).text
+    assert has_the_page_opened == "Tags"  # opened
 
 
 def open_page_users(get_driver):
     start(get_driver)
     click(get_driver, home_container_button)
     click(get_driver, users_button)
-    is_page_opens = get_driver.find_element(*companies_title).text
-    assert is_page_opens == "Users"  # opened
+    has_the_page_opened = get_driver.find_element(*home_container_elements_title).text
+    assert has_the_page_opened == "Users"  # opened
