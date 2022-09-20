@@ -22,25 +22,17 @@ def send_keys(get_driver, element, text):
     get_driver.find_element(*element).send_keys(text)
 
 
-def open_page_companies(get_driver):
+def open_public_page(get_driver, oneofthree):
+    if oneofthree == "Companies":
+        page_button = companies_button
+    elif oneofthree == "Tags":
+        page_button = tags_button
+    elif oneofthree == "Users":
+        page_button = users_button
+    else:
+        return None
     start(get_driver)
     click(get_driver, home_container_button)
-    click(get_driver, companies_button)
-    has_the_page_opened = get_driver.find_element(*home_container_elements_title).text
-    assert has_the_page_opened == "Companies"  # opened
-
-
-def open_page_tags(get_driver):
-    start(get_driver)
-    click(get_driver, home_container_button)
-    click(get_driver, tags_button)
-    has_the_page_opened = get_driver.find_element(*home_container_elements_title).text
-    assert has_the_page_opened == "Tags"  # opened
-
-
-def open_page_users(get_driver):
-    start(get_driver)
-    click(get_driver, home_container_button)
-    click(get_driver, users_button)
-    has_the_page_opened = get_driver.find_element(*home_container_elements_title).text
-    assert has_the_page_opened == "Users"  # opened
+    click(get_driver, page_button)
+    page_validation = get_driver.find_element(*home_container_elements_title).text
+    assert page_validation == oneofthree
