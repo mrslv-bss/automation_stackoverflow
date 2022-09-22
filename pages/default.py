@@ -7,7 +7,7 @@ search_field = (By.XPATH, "//*[@class='s-topbar--searchbar--input-group']/child:
 search_result_list_type_questions = (By.XPATH, "//div[@id='questions']/div")
 title_inside_a_page = (By.XPATH, "//h1//a[@class='question-hyperlink']")
 search_result_list_type_search = (By.XPATH, "//*[contains(@class, 'js-search-results')]/child::div/div")
-search_result_item_name_type_search_hyperlink = (By.XPATH, "//a[@class='answer-hyperlink ']")
+search_result_item_name_type_search_hyperlink = (By.XPATH, "//a[@class='s-link'] | //a[@class='answer-hyperlink ']")
 search_result_item_name_type_questions_hyperlink = (By.XPATH, "//a[@class='s-link']")
 search_type_title_text = (By.XPATH, "//h1[contains(@class, 'fs-headline1')]")
 
@@ -38,8 +38,6 @@ def click_on_grid_element(get_driver, elem_number):
         links_list = get_driver.find_elements(*search_result_item_name_type_questions_hyperlink)
     else:
         links_list = get_driver.find_elements(*search_result_item_name_type_search_hyperlink)
-    for item in links_list:
-        print(item.text)
     links_list[elem_number].click()
     return get_driver.find_element(*title_inside_a_page).text
 
