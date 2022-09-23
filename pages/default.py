@@ -1,8 +1,8 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from libs.default import send_keys, click
+from selenium.webdriver.common.action_chains import ActionChains
 
-# often uses locators in search and after
 search_field = (By.XPATH, "//*[@class='s-topbar--searchbar--input-group']/child::input")
 search_result_list_type_questions = (By.XPATH, "//div[@id='questions']/div")
 title_inside_a_page = (By.XPATH, "//h1//a[@class='question-hyperlink']")
@@ -38,8 +38,6 @@ def click_on_grid_element(get_driver, elem_number):
         links_list = get_driver.find_elements(*search_result_item_name_type_questions_hyperlink)
     else:
         links_list = get_driver.find_elements(*search_result_item_name_type_search_hyperlink)
-    links_list[elem_number].click()
+    action = ActionChains(get_driver)
+    action.move_to_element(links_list[elem_number]).click().perform()
     return get_driver.find_element(*title_inside_a_page).text
-
-
-# def compare_result_grid_element_data_and_in_page_data():
