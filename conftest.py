@@ -4,6 +4,6 @@ from selenium import webdriver
 
 @pytest.fixture
 def get_driver():
-    driver = webdriver.Firefox()
+    driver = webdriver.Chrome()
     yield driver
     driver.quit()
